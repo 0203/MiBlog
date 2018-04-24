@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Comment;
+use Auth;
 
 class PostController extends Controller
 {
@@ -41,7 +42,6 @@ class PostController extends Controller
 
             'title' => 'required',
             'post' => 'required',
-            'user_id' => 'required'
 
         ]);
 
