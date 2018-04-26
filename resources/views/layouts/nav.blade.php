@@ -12,7 +12,8 @@
                 @if (Auth::check())
             <a class="nav-link ml-auto" href="/logout"><i class="fa fa-sign-in-alt"></i> Logout</a>
                 @else
-                    <a class="nav-link ml-auto" href="/login"><i class="fa fa-sign-out-alt"></i> Login</a>
+                    <a class="nav-link ml-auto" href="/register"></i> Register</a>
+                    <a class="nav-link" href="/login"></i> Login</a>
                 @endif
         </nav>
         

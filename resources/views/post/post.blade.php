@@ -4,7 +4,21 @@
 
     <div class="col-sm-8 blog-main">
 
-       <h5 class="blog-post-title">{{ $post->title }}</h5>
+        <h2>{{ $post->title }}</h2>
+
+        @if (count($post->tags))
+            <ul>
+
+                @foreach($post->tags as $tag)
+                    <li>
+
+                        <a href="/posts/tags/{{ $tag-> name }}"> {{$tag->name}} </a>
+
+                    </li>
+                @endforeach
+            </ul>
+        @endif
+
         <p class="blog-post-meta">{{ $post->created_at->toFormattedDateString() }} by {{ $post->user->name }}</p>
 
         {{$post->body}}

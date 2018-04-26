@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use App\Post;
+use App\Repositories;
 use Carbon\Carbon;
+
 
 class HomeController extends Controller
 {
@@ -15,7 +18,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except(['index']);;
+        $this->middleware('auth')->except(['index', 'getWelcome','getLogin','getRegister']);;
     }
 
     /**
@@ -23,9 +26,13 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
+    public function index(Post $posts){
 
-        $posts = Post::latest();
+          $posts = $posts->all();
+
+//        $posts = (new Repositories\Posts)->all();
+
+//        $posts = Post::latest();
 
         if ($month = request('month')){
             $posts->whereMonth('created_at', Carbon::parse($month)->month);
@@ -35,9 +42,8 @@ class HomeController extends Controller
             $posts->whereYear('created_at', $year);
         }
 
-        $posts = $posts->get();
+//        $posts = $posts->get();
 
-        $archives = Post::archives();
 
         return view('post.index',compact('posts'));
     }
@@ -46,6 +52,18 @@ class HomeController extends Controller
 
         auth()->logout();
 
+        return view('auth.login');
+    }
+
+    public function getWelcome(){
+        return view('emails.welcome');
+    }
+
+    public function getRegister(){
+        return view('auth.register');
+    }
+
+    public function getLogin(){
         return view('auth.login');
     }
 

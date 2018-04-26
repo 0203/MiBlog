@@ -11,7 +11,14 @@
 |
 */
 
+//        $stripe = resolve('App\Billing\Stripe');
+//
+//        dd($stripe);
+
 Auth::routes();
+Route::get('/welcome', 'HomeController@getWelcome');
+Route::get('/register','HomeController@getRegister')->name('register');
+Route::get('/login','HomeController@getLogin')->name('login');
 Route::get('/logout','HomeController@getLogout');
 
 //post
@@ -22,6 +29,9 @@ Route::get('/posts/{post}', 'PostController@show');
 
 //comment
 Route::post('/posts/{post}/comment', 'CommentController@store');
+
+//tags
+Route::get('/posts/tags/{tag}','TagsController@index');
 
 
 Route::get('/home', 'HomeController@index')->name('home');

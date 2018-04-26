@@ -10550,7 +10550,7 @@ h6,
 
 .blog-post-title {
   margin-bottom: .25rem;
-  font-size: 2.5rem;
+  font-size: 10px;
 }
 
 .blog-post-meta {
@@ -10572,5 +10572,12 @@ h6,
 
 .blog-footer p:last-child {
   margin-bottom: 0;
+}
+
+#flash-message {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10;
 }
 

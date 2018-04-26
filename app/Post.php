@@ -33,7 +33,11 @@ class Post extends Model
     ->orderByRaw('min(created_at)desc')
     ->get()
     ->toArray();
-}
+    }
+
+    public function tags(){
+        return $this->belongsToMany(Tag::class);
+    }
 
     /**
      * The attributes that should be hidden for arrays.
